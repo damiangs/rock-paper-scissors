@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower:regular"
+      rel="stylesheet"
+    />
+    <link href="./output.css" rel="stylesheet" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <!-- Global container -->
+    <div
+      id="global"
+      class="flex flex-col items-center justify-center min-h-screen bg-slate-200"
+    >
+      <!-- Computer hand -->
+      <div>
+        <img
+          id="computer-hand"
+          class="max-w-full md:max-w-64 rotate-180 mb-10  transform transition-transform duration-500 ease-in-out scale-100"
+          src="../img/paper.png"
+          alt="paper"
+        />
+      </div>
+
+      <!-- Let's Play Message -->
+      <div>
+        <h1 id="game-message" class="uppercase text-6xl font-bold mb-6 duration-500">Let's Play!</h1>
+      </div>
+
+      <!-- Play Again Button -->
+      <div>
+        <button id="play-again"
+          class="bg-purple-700 text-slate-200 text-2xl uppercase rounded-full px-24 py-2 mb-6 hover:opacity-75 hover:scale-110 transition-all duration-500 hidden"
+        >
+          play again
+        </button>
+      </div>
+
+      <!-- Player options -->
+      <div
+        id="player-options"
+        class="flex flex-col items-center justify-center"
+      >
+        <div id="pick-option" class="uppercase text-2xl">Pick an option:</div>
+        <div
+          class="flex flex-row items-center justify-between space-x-4"
+        >
+          <img
+            id="rock"
+            class="max-w-32 mt-6 md:max-w-52 hover:scale-75 transition-all duration-500"
+            src="../img/rock.png"
+            alt="rock"
+          />
+          <img
+            id="paper"
+            class="max-w-32 md:max-w-52 hover:scale-75 transition-all duration-500"
+            src="../img/paper.png"
+            alt="paper"
+          />
+          <img
+            id="scissors"
+            class="max-w-32 md:max-w-52 hover:scale-75 transition-all duration-500"
+            src="../img/scissors.png"
+            alt="scissors"
+          />
+        </div>
+      </div>
+
+      <!-- selections container -->
+      <div id="selections" class="flex justify-center items-center mt-12">
+        <div id="rock-selection" class="hidden transform transition-transform duration-500 ease-in-out scale-100">
+            <img src="../img/rock.png" alt="rock" class="max-w-52 md:max-w-64"/>
+        </div>
+        <div id="paper-selection" class="hidden transform transition-transform duration-500 ease-in-out scale-100">
+            <img src="../img/paper.png" alt="paper" class="max-w-52 md:max-w-64"/>
+        </div>
+        <div id="scissors-selection" class="hidden transform transition-transform duration-500 ease-in-out scale-100">
+            <img src="../img/scissors.png" alt="scissors" class="max-w-52 md:max-w-64"/>
+        </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
