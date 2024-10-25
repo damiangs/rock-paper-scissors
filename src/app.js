@@ -123,7 +123,7 @@ playAgain.addEventListener("click", function () {
   computerHand.classList.add("scale-0");
 
   setTimeout(() => {
-    computerHand.src = "../img/paper.png";
+    computerHand.src = "./img/paper.png";
     computerHand.classList.remove("scale-0");
     computerHand.classList.add("scale-100");
   }, 500);
