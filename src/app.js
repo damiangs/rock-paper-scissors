@@ -31,8 +31,8 @@ function getComputerChoice() {
   // Display image choice
   setTimeout(() => {
     computerHand.src = `../img/${choice}.png`;
-    computerHand.classList.remove("scale-0");
-    computerHand.classList.add("scale-100");
+    computerHand.classList.toggle("scale-0", false);
+    computerHand.classList.toggle("scale-100", tru);
   }, 500);
 
   return choice;
@@ -74,10 +74,12 @@ function playGame(userChoice) {
 // Play rounds
 function playRound(humanChoice, computerChoice) {
   if (computerChoice === humanChoice) {
+    gameMessage.classList.add("scale-0", "duration-500");
+
     setTimeout(() => {
       gameMessage.textContent = "IT'S A DRAW 😐";
-      gameMessage.classList.remove("text-6xl");
-      gameMessage.classList.add("text-4xl");
+      gameMessage.classList.remove("scale-0", "text-6xl");
+      gameMessage.classList.add("scale-100", "text-4xl");
 
       playAgain.classList.remove("hidden");
     }, 500);
@@ -93,18 +95,22 @@ function playRound(humanChoice, computerChoice) {
 
   // winning logic
   if (winningMoves[computerChoice] === humanChoice) {
+    gameMessage.classList.add("scale-0", "duration-500");
+
     setTimeout(() => {
       gameMessage.textContent = "YOU LOSE 🤣";
-      gameMessage.classList.remove("text-6xl");
-      gameMessage.classList.add("text-4xl");
+      gameMessage.classList.remove("scale-0", "text-6xl");
+      gameMessage.classList.add("scale-100", "text-4xl");
 
       playAgain.classList.remove("hidden");
     }, 500);
   } else {
+    gameMessage.classList.add("scale-0", "duration-500");
+
     setTimeout(() => {
       gameMessage.textContent = "YOU WIN! 😁";
-      gameMessage.classList.remove("text-6xl");
-      gameMessage.classList.add("text-4xl");
+      gameMessage.classList.remove("scale-0", "text-6xl");
+      gameMessage.classList.add("scale-100", "text-4xl");
 
       playAgain.classList.remove("hidden");
     }, 500);
@@ -114,7 +120,7 @@ function playRound(humanChoice, computerChoice) {
 // Play again
 playAgain.addEventListener("click", function () {
   // reset computer hand
-  computerHand.classList.add("scale-0", "duration-500");
+  computerHand.classList.add("scale-0");
 
   setTimeout(() => {
     computerHand.src = "../img/paper.png";
@@ -137,14 +143,14 @@ playAgain.addEventListener("click", function () {
   playAgain.classList.add("hidden");
 
   // show player options
-  playerOptions.classList.add("scale-0", "duration-500");
+  // playerOptions.classList.add("scale-0", "duration-500");
 
   setTimeout(() => {
     playerOptions.classList.remove("scale-0");
     playerOptions.classList.add("scale-100");
+
+    playerOptions.classList.remove("hidden");
   }, 500);
-  playerOptions.classList.remove("opacity-0");
-  playerOptions.classList.remove("hidden");
 
   const selectionElements = document.querySelectorAll('[id$="-selection"]');
   selectionElements.forEach((element) => {
