@@ -1,3 +1,5 @@
+"use-strict";
+
 const computerHand = document.querySelector("#computer-hand");
 
 const playerOptions = document.querySelector("#player-options");
@@ -18,22 +20,12 @@ const playAgain = document.querySelector("#play-again");
 
 // Get computer choice
 function getComputerChoice() {
-  // generate random number
   const randomNum = Math.trunc(Math.random() * 3);
-
-  //   computer choice
   const options = ["rock", "paper", "scissors"];
   const choice = options[randomNum];
 
-  // Add scale transition
-  computerHand.classList.add("scale-0", "duration-500");
-
-  // Display image choice
-  setTimeout(() => {
-    computerHand.src = `./img/${choice}.png`;
-    computerHand.classList.toggle("scale-0", false);
-    computerHand.classList.toggle("scale-100", tru);
-  }, 500);
+  // Display image choice immediately
+  computerHand.src = `./img/${choice}.png`;
 
   return choice;
 }
@@ -45,117 +37,63 @@ scissorsOption.addEventListener("click", () => playGame("scissors"));
 
 // Play game
 function playGame(userChoice) {
-  // hide options container
-  playerOptions.classList.add("scale-0", "duration-500");
-  setTimeout(() => {
-    playerOptions.classList.add("hidden");
+  // Hide player options immediately
+  playerOptions.classList.add("hidden");
 
-    // show selected option
-    const selectionElement = document.querySelector(`#${userChoice}-selection`);
-    selectionElement.classList.remove("hidden");
-    selectionElement.classList.add("scale-0", "duration-500");
+  // Show selected option immediately
+  const selectionElement = document.querySelector(`#${userChoice}-selection`);
+  selectionElement.classList.remove("hidden");
 
-    // add fade effect
-    setTimeout(() => {
-      selectionElement.classList.remove("scale-0");
-      selectionElement.classList.add("scale-125");
-    }, 500);
+  // Computer plays
+  const computerChoice = getComputerChoice();
 
-    // Computer plays
-    const computerChoice = getComputerChoice();
-
-    // Wait for computer animation to finish before showing result
-    setTimeout(() => {
-      playRound(userChoice, computerChoice);
-    }, 1000); // Wait for computer animation
-  }, 500);
+  // Show result without delay
+  playRound(userChoice, computerChoice);
 }
 
 // Play rounds
 function playRound(humanChoice, computerChoice) {
   if (computerChoice === humanChoice) {
-    gameMessage.classList.add("scale-0", "duration-500");
-
-    setTimeout(() => {
-      gameMessage.textContent = "IT'S A DRAW 😐";
-      gameMessage.classList.remove("scale-0", "text-6xl");
-      gameMessage.classList.add("scale-100", "text-4xl");
-
-      playAgain.classList.remove("hidden");
-    }, 500);
+    gameMessage.textContent = "IT'S A DRAW 😐";
+    playAgain.classList.remove("hidden");
     return;
   }
 
-  // winning moves
+  // Winning moves
   const winningMoves = {
     rock: "scissors",
     paper: "rock",
     scissors: "paper",
   };
 
-  // winning logic
+  // Check the winner
   if (winningMoves[computerChoice] === humanChoice) {
-    gameMessage.classList.add("scale-0", "duration-500");
-
-    setTimeout(() => {
-      gameMessage.textContent = "YOU LOSE 🤣";
-      gameMessage.classList.remove("scale-0", "text-6xl");
-      gameMessage.classList.add("scale-100", "text-4xl");
-
-      playAgain.classList.remove("hidden");
-    }, 500);
+    gameMessage.textContent = "YOU LOSE 🤣";
   } else {
-    gameMessage.classList.add("scale-0", "duration-500");
-
-    setTimeout(() => {
-      gameMessage.textContent = "YOU WIN! 😁";
-      gameMessage.classList.remove("scale-0", "text-6xl");
-      gameMessage.classList.add("scale-100", "text-4xl");
-
-      playAgain.classList.remove("hidden");
-    }, 500);
+    gameMessage.textContent = "YOU WIN! 😁";
   }
+
+  playAgain.classList.remove("hidden");
 }
 
 // Play again
 playAgain.addEventListener("click", function () {
-  // reset computer hand
-  computerHand.classList.add("scale-0");
+  // Reset computer hand
+  computerHand.src = "./img/paper.png";
 
-  setTimeout(() => {
-    computerHand.src = "./img/paper.png";
-    computerHand.classList.remove("scale-0");
-    computerHand.classList.add("scale-100");
-  }, 500);
-
-  // reset game message
-  gameMessage.classList.add("scale-0", "duration-500");
-  setTimeout(() => {
-    gameMessage.classList.remove("scale-0");
-    gameMessage.classList.add("scale-100");
-  }, 500);
-
+  // Reset game message
   gameMessage.textContent = "let's play";
-  gameMessage.classList.remove("text-4xl");
-  gameMessage.classList.add("text-6xl");
 
-  // reset play again button
+  // Hide the play again button
   playAgain.classList.add("hidden");
 
-  // show player options
-  // playerOptions.classList.add("scale-0", "duration-500");
+  // Show player options again
+  playerOptions.classList.remove("hidden");
 
-  setTimeout(() => {
-    playerOptions.classList.remove("scale-0");
-    playerOptions.classList.add("scale-100");
-
-    playerOptions.classList.remove("hidden");
-  }, 500);
-
+  // Hide selected options
   const selectionElements = document.querySelectorAll('[id$="-selection"]');
   selectionElements.forEach((element) => {
     element.classList.add("hidden");
-    element.classList.remove("scale-125");
   });
 });
 
