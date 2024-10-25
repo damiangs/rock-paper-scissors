@@ -30,7 +30,7 @@ function getComputerChoice() {
 
   // Display image choice
   setTimeout(() => {
-    computerHand.src = `../img/${choice}.png`;
+    computerHand.src = `./img/${choice}.png`;
     computerHand.classList.toggle("scale-0", false);
     computerHand.classList.toggle("scale-100", tru);
   }, 500);
