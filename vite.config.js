@@ -1,0 +1,8 @@
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  base: "rock-paper-scissors",
+  build: {
+    outDir: "dist",
+  },
+});
