@@ -11,6 +11,8 @@ This is a simple JavaScript program with the game logic of rock, paper, scissors
 
 ## Technologies Used
 
+- HTML
+- Tailwind CSS
 - JavaScript
 
 ## What I learned
